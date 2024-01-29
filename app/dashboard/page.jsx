@@ -1,7 +1,7 @@
-import React from "react";
+import styles from "../ui/dashboard/dashboard.module.css";
 
 const Dashboard = () => {
-  return <div>Dashboard</div>;
+  return <div className={styles.wrapper}>Dashboard</div>;
 };
 
 export default Dashboard;
