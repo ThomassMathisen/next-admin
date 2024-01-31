@@ -1,3 +1,4 @@
+import { deleteProduct } from "@/app/lib/actions";
 import { fetchProducts } from "@/app/lib/data";
 import Pagination from "@/app/ui/dashboard/pagination/pagination";
 import styles from "@/app/ui/dashboard/products/products.module.css";
@@ -46,17 +47,17 @@ const ProductsPage = async ({ searchParams }) => {
               </td>
               <td>{product.desc}</td>
               <td>${product.price}</td>
-              <td>01.01.2023</td>
+              <td>{product.createdAt?.toString().slice(4, 16)}</td>
               <td>{product.stock}</td>
               <td>
                 <div className={styles.buttons}>
-                  <Link href={"/dashboard/products/1"}>
+                  <Link href={`/dashboard/products/${product.id}`}>
                     <button className={`${styles.button} ${styles.view}`}>
                       View
                     </button>
                   </Link>
-                  <form>
-                    <input type="hidden" name="id" />
+                  <form action={deleteProduct}>
+                    <input type="hidden" name="id" value={product.id} />
                     <button className={`${styles.button} ${styles.delete}`}>
                       Delete
                     </button>
